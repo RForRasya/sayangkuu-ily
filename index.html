@@ -1055,8 +1055,8 @@
             </div>
             
             <div class="envelope-signature">
-                Dengan cinta yang tak terbatas,<br>
-                Pacar tersayang 💕
+                Happy Girlfriend sayang,<br>
+                Rasyaa
             </div>
         </div>
     </div>
@@ -1104,6 +1104,7 @@
     </div>
 
     <div class="photo-gallery" id="photoGallery">
+        <!-- Original 6 photos -->
         <div class="photo-card" onclick="openModal(0)">
             <div class="photo-placeholder" id="placeholder0">
                 <span>💕 Kenangan Pertama</span>
@@ -1151,6 +1152,55 @@
             <div class="photo-caption">MAUU MATIII AJAAA</div>
             <div class="photo-description">CAKEPPPPPP BANGETTTTTTT GA KUATTTTTTTTT</div>
         </div>
+
+        <!-- NEW 6 photos -->
+        <div class="photo-card" onclick="openModal(6)">
+            <div class="photo-placeholder" id="placeholder6">
+                <span>🤓 Kacamata Lucu</span>
+            </div>
+            <div class="photo-caption">SELFIE BLUR TAPI TETEP CAKEPPPPP</div>
+            <div class="photo-description">WALAUPUN BLURRR TETEPPP KELIATAN CANTIKNYAAAA SAYANGGGGG! KACAMATANYAAA BIKIN TAMBAH GEMESINNNNN 🤓💕</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(7)">
+            <div class="photo-placeholder" id="placeholder7">
+                <span>✌️ Peace Sign</span>
+            </div>
+            <div class="photo-caption">POSE PEACE YANG MENGGEMASKANNNNN</div>
+            <div class="photo-description">ADUHHHHH POSE PEACE NYAAA LUCUUU BANGETTTTT! KACAMATA HITAMNYAAA BIKIN KELIATAN KAYAK ARTISSSS GITUUUU 😎✨</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(8)">
+            <div class="photo-placeholder" id="placeholder8">
+                <span>👫 Couple Goals</span>
+            </div>
+            <div class="photo-caption">FOTO COUPLE TERSWEETTTTT</div>
+            <div class="photo-description">INIII FOTO COUPLE GOALS BANGETTTTT! KALIAN BERDUA KOMPAKKKK BANGET PAKE BAJU ITEMMMM, ROMANTISSSS POLLLL 💕👫</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(9)">
+            <div class="photo-placeholder" id="placeholder9">
+                <span>🍜 Makan Bareng</span>
+            </div>
+            <div class="photo-caption">LAGI MAKAN ENAK BANGETTTTT</div>
+            <div class="photo-description">WAHHHHH LAGI MAKAN DI TEMPAT YANG BAGUSSSSS! MAKANANNYAAA KELIATAN ENAKKK BANGET, PASTI KENYANGGGG DEHHH 🍜✨</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(10)">
+            <div class="photo-placeholder" id="placeholder10">
+                <span>🌸 Pink Aesthetic</span>
+            </div>
+            <div class="photo-caption">HIJAB PINK YANG SUPER CUTEEEE</div>
+            <div class="photo-description">ADUHHHHH HIJAB PINKNYAAA CANTIK BANGETTTTT! WARNA PINK COCOK BANGET SAMA KAMUUUU, BIKIN TAMBAH IMUTTTTT 🌸💕</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(11)">
+            <div class="photo-placeholder" id="placeholder11">
+                <span>✌️ Maroon Vibes</span>
+            </div>
+            <div class="photo-caption">OUTFIT MAROON YANG ELEGANTTTT</div>
+            <div class="photo-description">WARNAA MAROONNYAAA BAGUS BANGETTTTT! POSE PEACE NYAAA JUGA LUCUUU, KELIATAN CONFIDENT BANGET SAYANGGGGG 💜✨</div>
+        </div>
     </div>
 </div>
 
@@ -1170,17 +1220,24 @@
     let backgroundMusic;
     let envelopeSound;
 
-    // Photo URLs - Foto-foto Citra yang cantik
+    // Photo URLs - Updated with new photos
     const photoUrls = {
         0: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiii.jpg-fkkmExVOH0LEb8I3TgPZ4ri5vTqWzs.jpeg", // Citra streaming
         1: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiii.jpg-G2qYMpfZ4zFLQPwe2Fudz8SgGcwytr.jpeg", // Citra selfie dramatis
         2: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiii.jpg-S9Nr1LU7XZXvCIOPzAEtcejSH0yFHk.jpeg", // Citra santai
         3: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hi.jpg-K4c9jCakm2F8qqorafNMpJSeDJDEvg.jpeg", // Foto berdua
         4: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiii.jpg-Ft7cCc7yQbwtfwX8W19xz4hxZ5HrrJ.jpeg", // Citra berkacamata
-        5: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hii.jpg-1Thd7NS3r59Jb4d3aZRAI1gSEXWXBN.jpeg"  // Citra cute pink
+        5: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hii.jpg-1Thd7NS3r59Jb4d3aZRAI1gSEXWXBN.jpeg", // Citra cute pink
+        // NEW PHOTOS
+        6: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiii.jpg-dCPqfo4YJmfjQDoZAuDfEpMJDNf0Li.jpeg", // Selfie blur dengan kacamata
+        7: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiii.jpg-x1WQpiCxkS1VIPBCjmF5EBKeLZIpae.jpeg", // Peace sign dengan kacamata hitam
+        8: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiii.jpg-88OocGwuYfZbuzA7VRjlxB5gUgyW1P.jpeg", // Foto couple di kursi
+        9: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiii.jpg-AfXevPItI4vVohJFzEDZbFbgsOsJI5.jpeg", // Makan di restoran
+        10: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiiiii.jpg-2UKmmcawJs9ZBVLnrywBcXU1lsj851.jpeg", // Hijab pink dengan bunga
+        11: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiiii.jpg-LmtWxSybau17kCRGFrdPX87EqREdU8.jpeg"  // Outfit maroon peace sign
     };
 
-    // Photo data - Updated to match the enthusiastic style
+    // Photo data - Updated with new photos
     const photos = [
         {
             title: "INI PAS KAMU LIVEE",
@@ -1217,6 +1274,43 @@
             description: "CAKEPPPPPP BANGETTTTTTT GA KUATTTTTTTTT 😭💕 HIJABBB PINKNYAAA COCOKKKK BANGETTT SAMAAAA KAMUUUU",
             content: "🌟 Mimpi Bersama",
             gradient: "linear-gradient(45deg, #45b7d1, #ffd700)"
+        },
+        // NEW PHOTOS DATA
+        {
+            title: "SELFIE BLUR TAPI TETEP CAKEPPPPP",
+            description: "WALAUPUN BLURRR TETEPPP KELIATAN CANTIKNYAAAA SAYANGGGGG! KACAMATANYAAA BIKIN TAMBAH GEMESINNNNN 🤓💕 LUCUUU BANGETTT DEHHHH",
+            content: "🤓 Kacamata Lucu",
+            gradient: "linear-gradient(45deg, #ff6b9d, #87ceeb)"
+        },
+        {
+            title: "POSE PEACE YANG MENGGEMASKANNNNN",
+            description: "ADUHHHHH POSE PEACE NYAAA LUCUUU BANGETTTTT! KACAMATA HITAMNYAAA BIKIN KELIATAN KAYAK ARTISSSS GITUUUU 😎✨ KERENNN POLLLL",
+            content: "✌️ Peace Sign",
+            gradient: "linear-gradient(45deg, #45b7d1, #ffd700)"
+        },
+        {
+            title: "FOTO COUPLE TERSWEETTTTT",
+            description: "INIII FOTO COUPLE GOALS BANGETTTTT! KALIAN BERDUA KOMPAKKKK BANGET PAKE BAJU ITEMMMM, ROMANTISSSS POLLLL 💕👫 SWEETTT BANGETTT",
+            content: "👫 Couple Goals",
+            gradient: "linear-gradient(45deg, #ff6b9d, #da70d6)"
+        },
+        {
+            title: "LAGI MAKAN ENAK BANGETTTTT",
+            description: "WAHHHHH LAGI MAKAN DI TEMPAT YANG BAGUSSSSS! MAKANANNYAAA KELIATAN ENAKKK BANGET, PASTI KENYANGGGG DEHHH 🍜✨ ENJOYYY BANGETTT",
+            content: "🍜 Makan Bareng",
+            gradient: "linear-gradient(45deg, #ffa500, #ff6b9d)"
+        },
+        {
+            title: "HIJAB PINK YANG SUPER CUTEEEE",
+            description: "ADUHHHHH HIJAB PINKNYAAA CANTIK BANGETTTTT! WARNA PINK COCOK BANGET SAMA KAMUUUU, BIKIN TAMBAH IMUTTTTT 🌸💕 GEMESINNN DEHHHH",
+            content: "🌸 Pink Aesthetic",
+            gradient: "linear-gradient(45deg, #ffc0cb, #ff6b9d)"
+        },
+        {
+            title: "OUTFIT MAROON YANG ELEGANTTTT",
+            description: "WARNAA MAROONNYAAA BAGUS BANGETTTTT! POSE PEACE NYAAA JUGA LUCUUU, KELIATAN CONFIDENT BANGET SAYANGGGGG 💜✨ CANTIKKKK POLLLL",
+            content: "✌️ Maroon Vibes",
+            gradient: "linear-gradient(45deg, #800020, #ff6b9d)"
         }
     ];
 
@@ -1234,9 +1328,9 @@
         }
     }
 
-    // Load photos on page load
+    // Load photos on page load - Updated for 12 photos
     function loadPhotos() {
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 12; i++) {
             const placeholder = document.getElementById(`placeholder${i}`);
             if (placeholder && photoUrls[i] && photoUrls[i].trim() !== "") {
                 placeholder.innerHTML = `<img src="${photoUrls[i]}" alt="Citra Photo ${i + 1}">`;
