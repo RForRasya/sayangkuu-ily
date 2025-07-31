@@ -91,6 +91,7 @@
         display: none;
         padding: 20px;
         text-align: center;
+        padding-top: 80px; /* Space for fixed buttons */
     }
 
     .header {
@@ -165,6 +166,8 @@
         transition: all 0.3s ease;
         z-index: 1000;
         display: none;
+        min-width: 50px;
+        text-align: center;
     }
 
     .music-control:hover {
@@ -186,11 +189,12 @@
     /* Photo Gallery */
     .photo-gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 20px;
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
+        margin-bottom: 120px; /* Space for envelope button */
     }
 
     .photo-card {
@@ -294,12 +298,14 @@
         font-size: 1.1rem;
         font-weight: bold;
         margin-bottom: 10px;
+        word-wrap: break-word;
     }
 
     .photo-description {
         color: #666;
         font-size: 0.9rem;
         line-height: 1.4;
+        word-wrap: break-word;
     }
 
     /* Photo Modal */
@@ -355,6 +361,7 @@
         text-align: center;
         max-width: 500px;
         backdrop-filter: blur(10px);
+        width: 100%;
     }
 
     .modal-title {
@@ -362,12 +369,14 @@
         font-size: 1.5rem;
         font-weight: bold;
         margin-bottom: 10px;
+        word-wrap: break-word;
     }
 
     .modal-description {
         color: #666;
         font-size: 1rem;
         line-height: 1.5;
+        word-wrap: break-word;
     }
 
     .close-modal {
@@ -490,15 +499,17 @@
         height: 100%;
         background-color: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(10px);
+        padding: 20px;
+        overflow-y: auto;
     }
 
     .envelope-content {
         position: relative;
         margin: auto;
         padding: 20px;
-        width: 90%;
+        width: 100%;
         max-width: 600px;
-        height: 100%;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -552,6 +563,7 @@
         font-weight: bold;
         margin-bottom: 20px;
         margin-top: 20px;
+        word-wrap: break-word;
     }
 
     .envelope-message {
@@ -564,6 +576,7 @@
         padding: 20px;
         border-radius: 15px;
         border-left: 4px solid #ff6b9d;
+        word-wrap: break-word;
     }
 
     .envelope-signature {
@@ -572,6 +585,7 @@
         font-weight: bold;
         font-style: italic;
         margin-top: 20px;
+        word-wrap: break-word;
     }
 
     .close-envelope {
@@ -614,6 +628,7 @@
         animation: notificationPulse 2s infinite;
         text-align: center;
         max-width: 300px;
+        word-wrap: break-word;
     }
 
     @keyframes notificationPulse {
@@ -633,141 +648,6 @@
         margin-right: 10px;
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .login-title {
-            font-size: 2rem;
-        }
-
-        .main-title {
-            font-size: 2.5rem;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-        }
-
-        .girlfriend-name {
-            font-size: 1.5rem;
-        }
-
-        .photo-gallery {
-            grid-template-columns: 1fr;
-            padding: 10px;
-        }
-
-        .login-box {
-            padding: 30px 20px;
-            margin: 10px;
-        }
-
-        .music-control {
-            top: 10px;
-            right: 10px;
-            padding: 8px 12px;
-            font-size: 1rem;
-        }
-
-        .modal-content {
-            padding: 10px;
-        }
-
-        .modal-image {
-            max-height: 60vh;
-        }
-
-        .close-modal {
-            top: 10px;
-            right: 15px;
-            font-size: 30px;
-            width: 40px;
-            height: 40px;
-        }
-
-        .modal-nav {
-            padding: 10px 15px;
-            font-size: 20px;
-        }
-
-        .modal-prev {
-            left: 10px;
-        }
-
-        .modal-next {
-            right: 10px;
-        }
-
-        .envelope-button {
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-        }
-
-        .envelope-card {
-            padding: 30px 20px;
-            margin: 10px;
-        }
-
-        .envelope-title {
-            font-size: 1.5rem;
-        }
-
-        .envelope-message {
-            font-size: 1rem;
-            padding: 15px;
-        }
-
-        .scroll-notification {
-            bottom: 90px;
-            padding: 12px 20px;
-            font-size: 0.9rem;
-            max-width: 250px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .main-title {
-            font-size: 2rem;
-        }
-
-        .subtitle {
-            font-size: 1rem;
-        }
-
-        .girlfriend-name {
-            font-size: 1.2rem;
-        }
-
-        .photo-placeholder {
-            height: 150px;
-        }
-
-        .modal-image {
-            max-height: 50vh;
-        }
-
-        .envelope-card {
-            padding: 25px 15px;
-        }
-
-        .envelope-title {
-            font-size: 1.3rem;
-        }
-
-        .envelope-message {
-            font-size: 0.9rem;
-        }
-
-        .scroll-notification {
-            bottom: 80px;
-            padding: 10px 15px;
-            font-size: 0.8rem;
-            max-width: 200px;
-        }
-    }
-
     /* Back Button */
     .back-btn {
         position: fixed;
@@ -782,6 +662,7 @@
         font-weight: bold;
         transition: all 0.3s ease;
         z-index: 100;
+        font-size: 0.9rem;
     }
 
     .back-btn:hover {
@@ -805,6 +686,9 @@
         z-index: 1000;
         display: none;
         animation: slideUp 0.5s ease;
+        text-align: center;
+        max-width: 90%;
+        word-wrap: break-word;
     }
 
     @keyframes slideUp {
@@ -815,6 +699,313 @@
         to {
             transform: translateX(-50%) translateY(0);
             opacity: 1;
+        }
+    }
+
+    /* Mobile Responsive Design */
+    @media (max-width: 768px) {
+        .main-container {
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+        .login-title {
+            font-size: 2rem;
+        }
+
+        .main-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+        }
+
+        .girlfriend-name {
+            font-size: 1.4rem;
+            margin: 15px 0;
+        }
+
+        .photo-gallery {
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 100px;
+        }
+
+        .photo-card {
+            padding: 15px;
+        }
+
+        .photo-placeholder {
+            height: 180px;
+        }
+
+        .photo-caption {
+            font-size: 1rem;
+        }
+
+        .photo-description {
+            font-size: 0.85rem;
+        }
+
+        .login-box {
+            padding: 30px 20px;
+            margin: 10px;
+        }
+
+        .music-control {
+            top: 15px;
+            right: 15px;
+            padding: 8px 12px;
+            font-size: 1rem;
+        }
+
+        .back-btn {
+            top: 15px;
+            left: 15px;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+
+        .modal-content {
+            padding: 15px;
+        }
+
+        .modal-image {
+            max-height: 55vh;
+        }
+
+        .modal-info {
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+        }
+
+        .modal-description {
+            font-size: 0.9rem;
+        }
+
+        .close-modal {
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            width: 45px;
+            height: 45px;
+        }
+
+        .modal-nav {
+            padding: 12px 16px;
+            font-size: 20px;
+        }
+
+        .modal-prev {
+            left: 15px;
+        }
+
+        .modal-next {
+            right: 15px;
+        }
+
+        .envelope-button {
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+
+        .envelope-content {
+            padding: 15px;
+        }
+
+        .envelope-card {
+            padding: 25px 20px;
+            margin: 10px;
+        }
+
+        .envelope-title {
+            font-size: 1.4rem;
+        }
+
+        .envelope-message {
+            font-size: 0.95rem;
+            padding: 15px;
+        }
+
+        .envelope-signature {
+            font-size: 1.1rem;
+        }
+
+        .scroll-notification {
+            bottom: 95px;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            max-width: 280px;
+        }
+
+        .audio-notice {
+            padding: 12px 20px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-container {
+            padding: 8px;
+            padding-top: 65px;
+        }
+
+        .main-title {
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+        }
+
+        .girlfriend-name {
+            font-size: 1.2rem;
+        }
+
+        .photo-gallery {
+            gap: 12px;
+            padding: 10px;
+            margin-bottom: 90px;
+        }
+
+        .photo-card {
+            padding: 12px;
+        }
+
+        .photo-placeholder {
+            height: 160px;
+        }
+
+        .photo-caption {
+            font-size: 0.95rem;
+        }
+
+        .photo-description {
+            font-size: 0.8rem;
+        }
+
+        .modal-image {
+            max-height: 45vh;
+        }
+
+        .modal-info {
+            padding: 12px;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+        }
+
+        .modal-description {
+            font-size: 0.85rem;
+        }
+
+        .close-modal {
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .modal-nav {
+            padding: 10px 14px;
+            font-size: 18px;
+        }
+
+        .modal-prev {
+            left: 10px;
+        }
+
+        .modal-next {
+            right: 10px;
+        }
+
+        .envelope-button {
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            font-size: 1.3rem;
+        }
+
+        .envelope-card {
+            padding: 20px 15px;
+        }
+
+        .envelope-title {
+            font-size: 1.2rem;
+        }
+
+        .envelope-message {
+            font-size: 0.9rem;
+            padding: 12px;
+        }
+
+        .envelope-signature {
+            font-size: 1rem;
+        }
+
+        .scroll-notification {
+            bottom: 85px;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            max-width: 250px;
+        }
+
+        .music-control {
+            top: 12px;
+            right: 12px;
+            padding: 6px 10px;
+            font-size: 0.9rem;
+        }
+
+        .back-btn {
+            top: 12px;
+            left: 12px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+        }
+
+        .audio-notice {
+            padding: 10px 15px;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .main-title {
+            font-size: 1.6rem;
+        }
+
+        .girlfriend-name {
+            font-size: 1.1rem;
+        }
+
+        .photo-placeholder {
+            height: 140px;
+        }
+
+        .envelope-card {
+            padding: 15px 10px;
+        }
+
+        .envelope-title {
+            font-size: 1.1rem;
+        }
+
+        .envelope-message {
+            font-size: 0.85rem;
         }
     }
 </style>
@@ -965,12 +1156,12 @@
 
 <!-- Background Music Audio -->
 <audio id="backgroundMusic" loop preload="auto">
-    <source src="/sounds/envelope-sound.mp3" type="audio/mpeg">
+    <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ssstik.io_1753944644804-01hUDMEzlL0JybAoJ3IvOBSA5wSZsN.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Envelope Sound Effect Audio -->
 <audio id="envelopeSound" preload="auto">
-    <source src="/sounds/envelope-sound.mp3" type="audio/mpeg">
+    <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ssstik.io_1753944644804-01hUDMEzlL0JybAoJ3IvOBSA5wSZsN.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -1035,15 +1226,19 @@
         envelopeSound = document.getElementById('envelopeSound');
         
         // Set volume
-        backgroundMusic.volume = 0.3;
-        envelopeSound.volume = 0.5;
+        if (backgroundMusic) {
+            backgroundMusic.volume = 0.4;
+        }
+        if (envelopeSound) {
+            envelopeSound.volume = 0.6;
+        }
     }
 
     // Load photos on page load
     function loadPhotos() {
         for (let i = 0; i < 6; i++) {
             const placeholder = document.getElementById(`placeholder${i}`);
-            if (photoUrls[i] && photoUrls[i].trim() !== "") {
+            if (placeholder && photoUrls[i] && photoUrls[i].trim() !== "") {
                 placeholder.innerHTML = `<img src="${photoUrls[i]}" alt="Citra Photo ${i + 1}">`;
                 placeholder.classList.add('has-image');
             }
@@ -1057,7 +1252,7 @@
         const documentHeight = document.documentElement.scrollHeight;
         
         // Check if user scrolled to bottom (with some tolerance)
-        if (scrollTop + windowHeight >= documentHeight - 100 && !hasScrolledToBottom) {
+        if (scrollTop + windowHeight >= documentHeight - 150 && !hasScrolledToBottom) {
             hasScrolledToBottom = true;
             showScrollNotification();
             showEnvelopeButton();
@@ -1067,26 +1262,36 @@
     // Show scroll notification
     function showScrollNotification() {
         const notification = document.getElementById('scrollNotification');
-        notification.style.display = 'block';
-        
-        // Hide notification after 5 seconds
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 5000);
+        if (notification) {
+            notification.style.display = 'block';
+            
+            // Hide notification after 5 seconds
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
     }
 
     // Show envelope button
     function showEnvelopeButton() {
-        document.getElementById('envelopeButton').style.display = 'block';
+        const envelopeBtn = document.getElementById('envelopeButton');
+        if (envelopeBtn) {
+            envelopeBtn.style.display = 'block';
+        }
     }
 
     // Play envelope sound
     function playEnvelopeSound() {
         try {
-            envelopeSound.currentTime = 0; // Reset to beginning
-            envelopeSound.play().catch(error => {
-                console.log('Could not play envelope sound:', error);
-            });
+            if (envelopeSound) {
+                envelopeSound.currentTime = 0; // Reset to beginning
+                const playPromise = envelopeSound.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log('Could not play envelope sound:', error);
+                    });
+                }
+            }
         } catch (error) {
             console.log('Envelope sound error:', error);
         }
@@ -1094,6 +1299,11 @@
 
     // Music control functions
     function toggleMusic() {
+        if (!backgroundMusic) {
+            initAudio();
+            return;
+        }
+        
         if (backgroundMusic.paused) {
             startMusic();
         } else {
@@ -1103,14 +1313,22 @@
 
     function startMusic() {
         try {
-            backgroundMusic.play().then(() => {
-                document.getElementById('musicControl').classList.add('playing');
-                document.getElementById('musicControl').innerHTML = '🎵';
-                showAudioNotice('🎵 Musik sedang diputar');
-            }).catch(error => {
-                console.log('Could not start music:', error);
-                showAudioNotice('❌ Tidak dapat memutar musik');
-            });
+            if (backgroundMusic) {
+                const playPromise = backgroundMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        const musicControl = document.getElementById('musicControl');
+                        if (musicControl) {
+                            musicControl.classList.add('playing');
+                            musicControl.innerHTML = '🎵';
+                        }
+                        showAudioNotice('🎵 Musik sedang diputar');
+                    }).catch(error => {
+                        console.log('Could not start music:', error);
+                        showAudioNotice('❌ Tidak dapat memutar musik');
+                    });
+                }
+            }
         } catch (error) {
             console.log('Music error:', error);
             showAudioNotice('❌ Tidak dapat memutar musik');
@@ -1118,32 +1336,49 @@
     }
 
     function stopMusic() {
-        backgroundMusic.pause();
-        document.getElementById('musicControl').classList.remove('playing');
-        document.getElementById('musicControl').innerHTML = '🔇';
-        showAudioNotice('🔇 Musik dihentikan');
+        if (backgroundMusic) {
+            backgroundMusic.pause();
+            const musicControl = document.getElementById('musicControl');
+            if (musicControl) {
+                musicControl.classList.remove('playing');
+                musicControl.innerHTML = '🔇';
+            }
+            showAudioNotice('🔇 Musik dihentikan');
+        }
     }
 
     function showAudioNotice(message) {
         const notice = document.getElementById('audioNotice');
-        notice.textContent = message;
-        notice.style.display = 'block';
-        
-        setTimeout(() => {
-            notice.style.display = 'none';
-        }, 3000);
+        if (notice) {
+            notice.textContent = message;
+            notice.style.display = 'block';
+            
+            setTimeout(() => {
+                notice.style.display = 'none';
+            }, 3000);
+        }
     }
 
     // Envelope functions
     function openEnvelope() {
         playEnvelopeSound();
-        document.getElementById('envelopeModal').style.display = 'block';
-        document.getElementById('scrollNotification').style.display = 'none';
+        const envelopeModal = document.getElementById('envelopeModal');
+        const scrollNotification = document.getElementById('scrollNotification');
+        
+        if (envelopeModal) {
+            envelopeModal.style.display = 'block';
+        }
+        if (scrollNotification) {
+            scrollNotification.style.display = 'none';
+        }
         document.body.style.overflow = 'hidden';
     }
 
     function closeEnvelope() {
-        document.getElementById('envelopeModal').style.display = 'none';
+        const envelopeModal = document.getElementById('envelopeModal');
+        if (envelopeModal) {
+            envelopeModal.style.display = 'none';
+        }
         document.body.style.overflow = 'auto';
     }
 
@@ -1157,9 +1392,13 @@
 
     // Enter site function
     function enterSite() {
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('mainPage').style.display = 'block';
-        document.getElementById('musicControl').style.display = 'block';
+        const loginPage = document.getElementById('loginPage');
+        const mainPage = document.getElementById('mainPage');
+        const musicControl = document.getElementById('musicControl');
+        
+        if (loginPage) loginPage.style.display = 'none';
+        if (mainPage) mainPage.style.display = 'block';
+        if (musicControl) musicControl.style.display = 'block';
         
         // Load photos
         loadPhotos();
@@ -1170,7 +1409,7 @@
         // Start music after a short delay
         setTimeout(() => {
             startMusic();
-        }, 1000);
+        }, 1500);
         
         startHeartAnimation();
         animatePhotos();
@@ -1186,6 +1425,8 @@
         const modalImage = document.getElementById('modalImage');
         const modalTitle = document.getElementById('modalTitle');
         const modalDescription = document.getElementById('modalDescription');
+        
+        if (!modal || !modalImage || !modalTitle || !modalDescription) return;
         
         const photo = photos[photoIndex];
         
@@ -1234,7 +1475,9 @@
 
     function closeModal() {
         const modal = document.getElementById('photoModal');
-        modal.style.display = 'none';
+        if (modal) {
+            modal.style.display = 'none';
+        }
         document.body.style.overflow = 'auto';
     }
 
@@ -1249,11 +1492,18 @@
     }
 
     function goBack() {
-        document.getElementById('mainPage').style.display = 'none';
-        document.getElementById('loginPage').style.display = 'flex';
-        document.getElementById('musicControl').style.display = 'none';
-        document.getElementById('envelopeButton').style.display = 'none';
-        document.getElementById('scrollNotification').style.display = 'none';
+        const mainPage = document.getElementById('mainPage');
+        const loginPage = document.getElementById('loginPage');
+        const musicControl = document.getElementById('musicControl');
+        const envelopeButton = document.getElementById('envelopeButton');
+        const scrollNotification = document.getElementById('scrollNotification');
+        
+        if (mainPage) mainPage.style.display = 'none';
+        if (loginPage) loginPage.style.display = 'flex';
+        if (musicControl) musicControl.style.display = 'none';
+        if (envelopeButton) envelopeButton.style.display = 'none';
+        if (scrollNotification) scrollNotification.style.display = 'none';
+        
         stopMusic();
         stopHeartAnimation();
         closeModal();
@@ -1277,7 +1527,7 @@
         const modal = document.getElementById('photoModal');
         const envelopeModal = document.getElementById('envelopeModal');
         
-        if (modal.style.display === 'block') {
+        if (modal && modal.style.display === 'block') {
             if (event.key === 'Escape') {
                 closeModal();
             } else if (event.key === 'ArrowLeft') {
@@ -1287,7 +1537,7 @@
             }
         }
         
-        if (envelopeModal.style.display === 'block' && event.key === 'Escape') {
+        if (envelopeModal && envelopeModal.style.display === 'block' && event.key === 'Escape') {
             closeEnvelope();
         }
     });
@@ -1299,8 +1549,13 @@
     }
 
     function stopHeartAnimation() {
-        clearInterval(heartInterval);
-        document.getElementById('hearts').innerHTML = '';
+        if (heartInterval) {
+            clearInterval(heartInterval);
+        }
+        const hearts = document.getElementById('hearts');
+        if (hearts) {
+            hearts.innerHTML = '';
+        }
     }
 
     function createHeart() {
@@ -1310,13 +1565,16 @@
         heart.style.left = Math.random() * 100 + '%';
         heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
         
-        document.getElementById('hearts').appendChild(heart);
-        
-        setTimeout(() => {
-            if (heart.parentNode) {
-                heart.parentNode.removeChild(heart);
-            }
-        }, 6000);
+        const hearts = document.getElementById('hearts');
+        if (hearts) {
+            hearts.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 6000);
+        }
     }
 
     function animatePhotos() {
@@ -1347,6 +1605,11 @@
 
     // Enable audio on first user interaction
     document.addEventListener('click', function() {
+        initAudio();
+    }, { once: true });
+
+    // Touch events for mobile
+    document.addEventListener('touchstart', function() {
         initAudio();
     }, { once: true });
 </script>
