@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Girlfriend Day - Citra Purbayasari</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #ff6b9d, #4ecdc4, #45b7d1, #f093fb);
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Login Page Styles */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .login-box {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 107, 157, 0.3);
+    }
+
+    .login-title {
+        color: #ff6b9d;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .login-subtitle {
+        color: #45b7d1;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .login-message {
+        color: #666;
+        font-size: 1rem;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    .login-btn {
+        background: linear-gradient(45deg, #ff6b9d, #45b7d1);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 25px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Page Styles */
+    .main-container {
+        display: none;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header {
+        margin-bottom: 40px;
+        animation: fadeInDown 1s ease;
+    }
+
+    .main-title {
+        font-size: 3.5rem;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin-bottom: 10px;
+        animation: bounce 2s infinite;
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+        color: #fff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .girlfriend-name {
+        font-size: 2rem;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin: 20px 0;
+        font-weight: bold;
+        background: linear-gradient(45deg, #ff6b9d, #45b7d1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+        }
+        to {
+            text-shadow: 0 0 30px rgba(69, 183, 209, 0.8);
+        }
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Music Control */
+    .music-control {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #ff6b9d;
+        border-radius: 50px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: none;
+    }
+
+    .music-control:hover {
+        background: #ff6b9d;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .music-control.playing {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    /* Photo Gallery */
+    .photo-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .photo-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(50px);
+        opacity: 0;
+        transition: all 0.6s ease;
+        border: 3px solid transparent;
+        background-clip: padding-box;
+        cursor: pointer;
+    }
+
+    .photo-card.animate {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .photo-card:nth-child(odd) {
+        border-color: #ff6b9d;
+    }
+
+    .photo-card:nth-child(even) {
+        border-color: #45b7d1;
+    }
+
+    .photo-placeholder {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(45deg, #ff6b9d, #45b7d1);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .photo-placeholder.has-image {
+        background: none;
+        padding: 0;
+    }
+
+    .photo-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    .photo-placeholder::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+        z-index: 1;
+    }
+
+    .photo-placeholder.has-image::before {
+        display: none;
+    }
+
+    .photo-placeholder::after {
+        content: 'Klik untuk melihat';
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+    }
+
+    .photo-card:hover .photo-placeholder::after {
+        opacity: 1;
+    }
+
+    @keyframes shimmer {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .photo-caption {
+        color: #ff6b9d;
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .photo-description {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Photo Modal */
+    .photo-modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+        position: relative;
+        margin: auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 800px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-image {
+        max-width: 100%;
+        max-height: 70vh;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: modalZoomIn 0.3s ease;
+    }
+
+    @keyframes modalZoomIn {
+        from {
+            transform: scale(0.3);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .modal-info {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 20px;
+        text-align: center;
+        max-width: 500px;
+        backdrop-filter: blur(10px);
+    }
+
+    .modal-title {
+        color: #ff6b9d;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .modal-description {
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(255, 107, 157, 0.8);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .close-modal:hover {
+        background: rgba(255, 107, 157, 1);
+        transform: scale(1.1);
+    }
+
+    .modal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 107, 157, 0.8);
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .modal-nav:hover {
+        background: rgba(255, 107, 157, 1);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .modal-prev {
+        left: 20px;
+    }
+
+    .modal-next {
+        right: 20px;
+    }
+
+    /* Hearts Animation */
+    .hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1000;
+    }
+
+    .heart {
+        position: absolute;
+        color: #ff6b9d;
+        font-size: 20px;
+        animation: float 6s infinite linear;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .login-title {
+            font-size: 2rem;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+        }
+
+        .girlfriend-name {
+            font-size: 1.5rem;
+        }
+
+        .photo-gallery {
+            grid-template-columns: 1fr;
+            padding: 10px;
+        }
+
+        .login-box {
+            padding: 30px 20px;
+            margin: 10px;
+        }
+
+        .music-control {
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            font-size: 1rem;
+        }
+
+        .modal-content {
+            padding: 10px;
+        }
+
+        .modal-image {
+            max-height: 60vh;
+        }
+
+        .close-modal {
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .modal-nav {
+            padding: 10px 15px;
+            font-size: 20px;
+        }
+
+        .modal-prev {
+            left: 10px;
+        }
+
+        .modal-next {
+            right: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-title {
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+        }
+
+        .girlfriend-name {
+            font-size: 1.2rem;
+        }
+
+        .photo-placeholder {
+            height: 150px;
+        }
+
+        .modal-image {
+            max-height: 50vh;
+        }
+    }
+
+    /* Back Button */
+    .back-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #ff6b9d;
+        color: #ff6b9d;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        z-index: 100;
+    }
+
+    .back-btn:hover {
+        background: #ff6b9d;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Audio Permission Notice */
+    .audio-notice {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px 25px;
+        border-radius: 25px;
+        border: 2px solid #ff6b9d;
+        color: #ff6b9d;
+        font-weight: bold;
+        z-index: 1000;
+        display: none;
+        animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateX(-50%) translateY(100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+<body>
+<!-- Hearts Animation Container -->
+<div class="hearts" id="hearts"></div>
+
+<!-- Music Control -->
+<div class="music-control" id="musicControl" onclick="toggleMusic()">
+    🎵
+</div>
+
+<!-- Audio Notice -->
+<div class="audio-notice" id="audioNotice">
+    🎵 Musik akan diputar otomatis
+</div>
+
+<!-- Photo Modal -->
+<div class="photo-modal" id="photoModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <button class="modal-nav modal-prev" onclick="prevPhoto()">❮</button>
+        <button class="modal-nav modal-next" onclick="nextPhoto()">❯</button>
+        
+        <div class="modal-image" id="modalImage">
+            <!-- Photo content will be inserted here -->
+        </div>
+        
+        <div class="modal-info">
+            <div class="modal-title" id="modalTitle">Judul Foto</div>
+            <div class="modal-description" id="modalDescription">Deskripsi foto</div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Page -->
+<div class="login-container" id="loginPage">
+    <div class="login-box">
+        <h1 class="login-title">💕</h1>
+        <h2 class="login-subtitle">Citra Purbayasari</h2>
+        <p class="login-message">
+            Selamat datang di hari spesial ini!<br>
+            Ada surprise khusus yang sudah disiapkan untukmu
+        </p>
+        <button class="login-btn" onclick="enterSite()">Masuk 💖</button>
+    </div>
+</div>
+
+<!-- Main Page -->
+<div class="main-container" id="mainPage">
+    <button class="back-btn" onclick="goBack()">← Kembali</button>
+    
+    <div class="header">
+        <h1 class="main-title">Happy Girlfriend Day! 💕</h1>
+        <div class="girlfriend-name">Citra Purbayasari</div>
+        <p class="subtitle">Girlfriend terbaik di dunia ✨</p>
+    </div>
+
+    <div class="photo-gallery" id="photoGallery">
+        <div class="photo-card" onclick="openModal(0)">
+            <div class="photo-placeholder" id="placeholder0">
+                <span>💕 Kenangan Pertama</span>
+            </div>
+            <div class="photo-caption">Citra yang Cantik</div>
+            <div class="photo-description">Moment indah saat Citra lagi streaming, terlihat cantik dengan hijab leopardnya</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(1)">
+            <div class="photo-placeholder" id="placeholder1">
+                <span>🌸 Bunga Favorit</span>
+            </div>
+            <div class="photo-caption">Citra yang Menawan</div>
+            <div class="photo-description">Selfie cantik Citra dengan pencahayaan yang dramatis, bikin hati berbunga</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(2)">
+            <div class="photo-placeholder" id="placeholder2">
+                <span>🎂 Ulang Tahun</span>
+            </div>
+            <div class="photo-caption">Citra yang Manis</div>
+            <div class="photo-description">Moment santai Citra yang terlihat natural dan manis banget</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(3)">
+            <div class="photo-placeholder" id="placeholder3">
+                <span>🌅 Sunset Bersama</span>
+            </div>
+            <div class="photo-caption">Kita Berdua</div>
+            <div class="photo-description">Foto bersama yang sweet banget, momen berharga kita di luar ruangan</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(4)">
+            <div class="photo-placeholder" id="placeholder4">
+                <span>🎁 Hadiah Surprise</span>
+            </div>
+            <div class="photo-caption">Citra Berkacamata</div>
+            <div class="photo-description">Citra yang imut banget pakai kacamata, bikin gemas dan sayang</div>
+        </div>
+
+        <div class="photo-card" onclick="openModal(5)">
+            <div class="photo-placeholder" id="placeholder5">
+                <span>🌟 Mimpi Bersama</span>
+            </div>
+            <div class="photo-caption">Citra yang Lucu</div>
+            <div class="photo-description">Foto Citra yang super cute dengan hijab pink dan pose yang menggemaskan</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let isPlaying = false;
+    let currentPhotoIndex = 0;
+    let audioContext;
+    let currentMelodyTimeout;
+
+    // Photo URLs - Foto-foto Citra yang cantik
+    const photoUrls = {
+        0: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiii.jpg-fkkmExVOH0LEb8I3TgPZ4ri5vTqWzs.jpeg", // Citra streaming
+        1: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiii.jpg-G2qYMpfZ4zFLQPwe2Fudz8SgGcwytr.jpeg", // Citra selfie dramatis
+        2: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiii.jpg-S9Nr1LU7XZXvCIOPzAEtcejSH0yFHk.jpeg", // Citra santai
+        3: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hi.jpg-K4c9jCakm2F8qqorafNMpJSeDJDEvg.jpeg", // Foto berdua
+        4: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiii.jpg-Ft7cCc7yQbwtfwX8W19xz4hxZ5HrrJ.jpeg", // Citra berkacamata
+        5: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hii.jpg-1Thd7NS3r59Jb4d3aZRAI1gSEXWXBN.jpeg"  // Citra cute pink
+    };
+
+    // Photo data
+    const photos = [
+        {
+            title: "Citra yang Cantik",
+            description: "Moment indah saat Citra lagi streaming, terlihat cantik dengan hijab leopardnya. Senyuman manis yang selalu bikin hari jadi lebih cerah dan bahagia.",
+            content: "💕 Kenangan Pertama",
+            gradient: "linear-gradient(45deg, #ff6b9d, #ff8fab)"
+        },
+        {
+            title: "Citra yang Menawan",
+            description: "Selfie cantik Citra dengan pencahayaan yang dramatis, bikin hati berbunga. Mata yang indah dan senyuman yang mempesona selalu bikin jatuh cinta lagi dan lagi.",
+            content: "🌸 Bunga Favorit",
+            gradient: "linear-gradient(45deg, #ff6b9d, #ffc0cb)"
+        },
+        {
+            title: "Citra yang Manis",
+            description: "Moment santai Citra yang terlihat natural dan manis banget. Kecantikan alami yang tidak perlu riasan berlebihan, sudah sempurna apa adanya.",
+            content: "🎂 Ulang Tahun",
+            gradient: "linear-gradient(45deg, #45b7d1, #87ceeb)"
+        },
+        {
+            title: "Kita Berdua",
+            description: "Foto bersama yang sweet banget, momen berharga kita di luar ruangan. Kebahagiaan terpancar dari wajah kita berdua, kenangan yang tak terlupakan.",
+            content: "🌅 Sunset Bersama",
+            gradient: "linear-gradient(45deg, #ff6b9d, #ffa500)"
+        },
+        {
+            title: "Citra Berkacamata",
+            description: "Citra yang imut banget pakai kacamata, bikin gemas dan sayang. Look yang intellectual tapi tetap cute, kombinasi yang sempurna untuk Citra tersayang.",
+            content: "🎁 Hadiah Surprise",
+            gradient: "linear-gradient(45deg, #ff6b9d, #da70d6)"
+        },
+        {
+            title: "Citra yang Lucu",
+            description: "Foto Citra yang super cute dengan hijab pink dan pose yang menggemaskan. Bunga tulip pink yang cocok banget dengan kepribadian Citra yang manis dan ceria.",
+            content: "🌟 Mimpi Bersama",
+            gradient: "linear-gradient(45deg, #45b7d1, #ffd700)"
+        }
+    ];
+
+    // Load photos on page load
+    function loadPhotos() {
+        for (let i = 0; i < 6; i++) {
+            const placeholder = document.getElementById(`placeholder${i}`);
+            if (photoUrls[i] && photoUrls[i].trim() !== "") {
+                placeholder.innerHTML = `<img src="${photoUrls[i]}" alt="Citra Photo ${i + 1}">`;
+                placeholder.classList.add('has-image');
+            }
+        }
+    }
+
+    // Pasilyo-inspired melody (chorus part)
+    function createPasilyoMelody() {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        const melody = [
+            { freq: 523.25, duration: 0.4 }, // C5
+            { freq: 587.33, duration: 0.4 }, // D5
+            { freq: 659.25, duration: 0.6 }, // E5
+            { freq: 698.46, duration: 0.4 }, // F5
+            { freq: 659.25, duration: 0.8 }, // E5
+            
+            { freq: 587.33, duration: 0.4 }, // D5
+            { freq: 523.25, duration: 0.4 }, // C5
+            { freq: 587.33, duration: 0.6 }, // D5
+            { freq: 659.25, duration: 0.8 }, // E5
+            
+            { freq: 698.46, duration: 0.4 }, // F5
+            { freq: 783.99, duration: 0.4 }, // G5
+            { freq: 880.00, duration: 0.6 }, // A5
+            { freq: 783.99, duration: 0.4 }, // G5
+            { freq: 698.46, duration: 0.8 }, // F5
+            
+            { freq: 659.25, duration: 0.4 }, // E5
+            { freq: 587.33, duration: 0.4 }, // D5
+            { freq: 523.25, duration: 1.2 }, // C5
+            
+            { freq: 0, duration: 0.8 },
+        ];
+
+        let currentTime = audioContext.currentTime;
+
+        function playMelody() {
+            if (!isPlaying) return;
+            
+            melody.forEach((note, index) => {
+                if (note.freq === 0) {
+                    currentTime += note.duration;
+                    return;
+                }
+                
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(note.freq, currentTime);
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0, currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.15, currentTime + 0.05);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + note.duration - 0.05);
+                
+                oscillator.start(currentTime);
+                oscillator.stop(currentTime + note.duration);
+                
+                currentTime += note.duration;
+            });
+
+            if (isPlaying) {
+                const totalDuration = melody.reduce((sum, note) => sum + note.duration, 0);
+                currentMelodyTimeout = setTimeout(() => {
+                    currentTime = audioContext.currentTime;
+                    playMelody();
+                }, (totalDuration + 2) * 1000);
+            }
+        }
+
+        return playMelody;
+    }
+
+    let playMelody;
+
+    function initAudio() {
+        try {
+            playMelody = createPasilyoMelody();
+        } catch (error) {
+            console.log('Web Audio API not supported');
+        }
+    }
+
+    function toggleMusic() {
+        if (!isPlaying) {
+            startMusic();
+        } else {
+            stopMusic();
+        }
+    }
+
+    function startMusic() {
+        try {
+            if (playMelody) {
+                isPlaying = true;
+                playMelody();
+                document.getElementById('musicControl').classList.add('playing');
+                document.getElementById('musicControl').innerHTML = '🎵';
+                showAudioNotice('🎵 Musik sedang diputar');
+            }
+        } catch (error) {
+            console.log('Could not start music:', error);
+            showAudioNotice('❌ Tidak dapat memutar musik');
+        }
+    }
+
+    function stopMusic() {
+        isPlaying = false;
+        if (currentMelodyTimeout) {
+            clearTimeout(currentMelodyTimeout);
+        }
+        document.getElementById('musicControl').classList.remove('playing');
+        document.getElementById('musicControl').innerHTML = '🔇';
+        showAudioNotice('🔇 Musik dihentikan');
+    }
+
+    function showAudioNotice(message) {
+        const notice = document.getElementById('audioNotice');
+        notice.textContent = message;
+        notice.style.display = 'block';
+        
+        setTimeout(() => {
+            notice.style.display = 'none';
+        }, 3000);
+    }
+
+    // Enter site function
+    function enterSite() {
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('mainPage').style.display = 'block';
+        document.getElementById('musicControl').style.display = 'block';
+        
+        // Load photos
+        loadPhotos();
+        
+        initAudio();
+        setTimeout(() => {
+            startMusic();
+        }, 1000);
+        
+        startHeartAnimation();
+        animatePhotos();
+    }
+
+    // Modal functions
+    function openModal(photoIndex) {
+        currentPhotoIndex = photoIndex;
+        const modal = document.getElementById('photoModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        
+        const photo = photos[photoIndex];
+        
+        // Check if there's a photo URL
+        if (photoUrls[photoIndex] && photoUrls[photoIndex].trim() !== "") {
+            modalImage.innerHTML = `<img src="${photoUrls[photoIndex]}" style="max-width: 100%; max-height: 70vh; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);">`;
+        } else {
+            modalImage.innerHTML = `
+                <div style="
+                    width: 100%;
+                    max-width: 600px;
+                    height: 400px;
+                    background: ${photo.gradient};
+                    border-radius: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                    position: relative;
+                    overflow: hidden;
+                ">
+                    <div style="
+                        position: absolute;
+                        top: -50%;
+                        left: -50%;
+                        width: 200%;
+                        height: 200%;
+                        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                        transform: rotate(45deg);
+                        animation: shimmer 3s infinite;
+                    "></div>
+                    ${photo.content}
+                </div>
+            `;
+        }
+        
+        modalTitle.textContent = photo.title;
+        modalDescription.textContent = photo.description;
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('photoModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function nextPhoto() {
+        currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+        openModal(currentPhotoIndex);
+    }
+
+    function prevPhoto() {
+        currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+        openModal(currentPhotoIndex);
+    }
+
+    function goBack() {
+        document.getElementById('mainPage').style.display = 'none';
+        document.getElementById('loginPage').style.display = 'flex';
+        document.getElementById('musicControl').style.display = 'none';
+        stopMusic();
+        stopHeartAnimation();
+        closeModal();
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('photoModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        const modal = document.getElementById('photoModal');
+        if (modal.style.display === 'block') {
+            if (event.key === 'Escape') {
+                closeModal();
+            } else if (event.key === 'ArrowLeft') {
+                prevPhoto();
+            } else if (event.key === 'ArrowRight') {
+                nextPhoto();
+            }
+        }
+    });
+
+    let heartInterval;
+
+    function startHeartAnimation() {
+        heartInterval = setInterval(createHeart, 300);
+    }
+
+    function stopHeartAnimation() {
+        clearInterval(heartInterval);
+        document.getElementById('hearts').innerHTML = '';
+    }
+
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = Math.random() > 0.5 ? '💕' : '💖';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        
+        document.getElementById('hearts').appendChild(heart);
+        
+        setTimeout(() => {
+            if (heart.parentNode) {
+                heart.parentNode.removeChild(heart);
+            }
+        }, 6000);
+    }
+
+    function animatePhotos() {
+        const photoCards = document.querySelectorAll('.photo-card');
+        
+        photoCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('animate');
+            }, index * 200);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const photoCards = document.querySelectorAll('.photo-card');
+        
+        photoCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    });
+
+    // Enable audio on first user interaction
+    document.addEventListener('click', function() {
+        if (!isPlaying && document.getElementById('mainPage').style.display === 'block') {
+            initAudio();
+        }
+    }, { once: true });
+</script>
+</body>
+</html>
