@@ -864,8 +864,8 @@
             </div>
             
             <div class="envelope-signature">
-                Happy girlfriend dayy,<br>
-                Rasyaa
+                Dengan cinta yang tak terbatas,<br>
+                Pacar tersayang 💕
             </div>
         </div>
     </div>
@@ -963,17 +963,21 @@
     </div>
 </div>
 
-<!-- Audio Element -->
+<!-- Background Music Audio -->
+<audio id="backgroundMusic" loop preload="auto">
+    <source src="/sounds/envelope-sound.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Envelope Sound Effect Audio -->
 <audio id="envelopeSound" preload="auto">
     <source src="/sounds/envelope-sound.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    let isPlaying = false;
     let currentPhotoIndex = 0;
-    let audioContext;
-    let currentMelodyTimeout;
     let hasScrolledToBottom = false;
+    let backgroundMusic;
+    let envelopeSound;
 
     // Photo URLs - Foto-foto Citra yang cantik
     const photoUrls = {
@@ -1025,6 +1029,16 @@
         }
     ];
 
+    // Initialize audio elements
+    function initAudio() {
+        backgroundMusic = document.getElementById('backgroundMusic');
+        envelopeSound = document.getElementById('envelopeSound');
+        
+        // Set volume
+        backgroundMusic.volume = 0.3;
+        envelopeSound.volume = 0.5;
+    }
+
     // Load photos on page load
     function loadPhotos() {
         for (let i = 0; i < 6; i++) {
@@ -1069,14 +1083,55 @@
     // Play envelope sound
     function playEnvelopeSound() {
         try {
-            const audio = document.getElementById('envelopeSound');
-            audio.currentTime = 0; // Reset to beginning
-            audio.play().catch(error => {
-                console.log('Could not play sound:', error);
+            envelopeSound.currentTime = 0; // Reset to beginning
+            envelopeSound.play().catch(error => {
+                console.log('Could not play envelope sound:', error);
             });
         } catch (error) {
-            console.log('Sound error:', error);
+            console.log('Envelope sound error:', error);
         }
+    }
+
+    // Music control functions
+    function toggleMusic() {
+        if (backgroundMusic.paused) {
+            startMusic();
+        } else {
+            stopMusic();
+        }
+    }
+
+    function startMusic() {
+        try {
+            backgroundMusic.play().then(() => {
+                document.getElementById('musicControl').classList.add('playing');
+                document.getElementById('musicControl').innerHTML = '🎵';
+                showAudioNotice('🎵 Musik sedang diputar');
+            }).catch(error => {
+                console.log('Could not start music:', error);
+                showAudioNotice('❌ Tidak dapat memutar musik');
+            });
+        } catch (error) {
+            console.log('Music error:', error);
+            showAudioNotice('❌ Tidak dapat memutar musik');
+        }
+    }
+
+    function stopMusic() {
+        backgroundMusic.pause();
+        document.getElementById('musicControl').classList.remove('playing');
+        document.getElementById('musicControl').innerHTML = '🔇';
+        showAudioNotice('🔇 Musik dihentikan');
+    }
+
+    function showAudioNotice(message) {
+        const notice = document.getElementById('audioNotice');
+        notice.textContent = message;
+        notice.style.display = 'block';
+        
+        setTimeout(() => {
+            notice.style.display = 'none';
+        }, 3000);
     }
 
     // Envelope functions
@@ -1100,130 +1155,6 @@
         }
     });
 
-    // Pasilyo-inspired melody (chorus part)
-    function createPasilyoMelody() {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        
-        const melody = [
-            { freq: 523.25, duration: 0.4 }, // C5
-            { freq: 587.33, duration: 0.4 }, // D5
-            { freq: 659.25, duration: 0.6 }, // E5
-            { freq: 698.46, duration: 0.4 }, // F5
-            { freq: 659.25, duration: 0.8 }, // E5
-            
-            { freq: 587.33, duration: 0.4 }, // D5
-            { freq: 523.25, duration: 0.4 }, // C5
-            { freq: 587.33, duration: 0.6 }, // D5
-            { freq: 659.25, duration: 0.8 }, // E5
-            
-            { freq: 698.46, duration: 0.4 }, // F5
-            { freq: 783.99, duration: 0.4 }, // G5
-            { freq: 880.00, duration: 0.6 }, // A5
-            { freq: 783.99, duration: 0.4 }, // G5
-            { freq: 698.46, duration: 0.8 }, // F5
-            
-            { freq: 659.25, duration: 0.4 }, // E5
-            { freq: 587.33, duration: 0.4 }, // D5
-            { freq: 523.25, duration: 1.2 }, // C5
-            
-            { freq: 0, duration: 0.8 },
-        ];
-
-        let currentTime = audioContext.currentTime;
-
-        function playMelody() {
-            if (!isPlaying) return;
-            
-            melody.forEach((note, index) => {
-                if (note.freq === 0) {
-                    currentTime += note.duration;
-                    return;
-                }
-                
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.setValueAtTime(note.freq, currentTime);
-                oscillator.type = 'sine';
-                
-                gainNode.gain.setValueAtTime(0, currentTime);
-                gainNode.gain.linearRampToValueAtTime(0.15, currentTime + 0.05);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + note.duration - 0.05);
-                
-                oscillator.start(currentTime);
-                oscillator.stop(currentTime + note.duration);
-                
-                currentTime += note.duration;
-            });
-
-            if (isPlaying) {
-                const totalDuration = melody.reduce((sum, note) => sum + note.duration, 0);
-                currentMelodyTimeout = setTimeout(() => {
-                    currentTime = audioContext.currentTime;
-                    playMelody();
-                }, (totalDuration + 2) * 1000);
-            }
-        }
-
-        return playMelody;
-    }
-
-    let playMelody;
-
-    function initAudio() {
-        try {
-            playMelody = createPasilyoMelody();
-        } catch (error) {
-            console.log('Web Audio API not supported');
-        }
-    }
-
-    function toggleMusic() {
-        if (!isPlaying) {
-            startMusic();
-        } else {
-            stopMusic();
-        }
-    }
-
-    function startMusic() {
-        try {
-            if (playMelody) {
-                isPlaying = true;
-                playMelody();
-                document.getElementById('musicControl').classList.add('playing');
-                document.getElementById('musicControl').innerHTML = '🎵';
-                showAudioNotice('🎵 Musik sedang diputar');
-            }
-        } catch (error) {
-            console.log('Could not start music:', error);
-            showAudioNotice('❌ Tidak dapat memutar musik');
-        }
-    }
-
-    function stopMusic() {
-        isPlaying = false;
-        if (currentMelodyTimeout) {
-            clearTimeout(currentMelodyTimeout);
-        }
-        document.getElementById('musicControl').classList.remove('playing');
-        document.getElementById('musicControl').innerHTML = '🔇';
-        showAudioNotice('🔇 Musik dihentikan');
-    }
-
-    function showAudioNotice(message) {
-        const notice = document.getElementById('audioNotice');
-        notice.textContent = message;
-        notice.style.display = 'block';
-        
-        setTimeout(() => {
-            notice.style.display = 'none';
-        }, 3000);
-    }
-
     // Enter site function
     function enterSite() {
         document.getElementById('loginPage').style.display = 'none';
@@ -1233,7 +1164,10 @@
         // Load photos
         loadPhotos();
         
+        // Initialize audio
         initAudio();
+        
+        // Start music after a short delay
         setTimeout(() => {
             startMusic();
         }, 1000);
@@ -1413,9 +1347,7 @@
 
     // Enable audio on first user interaction
     document.addEventListener('click', function() {
-        if (!isPlaying && document.getElementById('mainPage').style.display === 'block') {
-            initAudio();
-        }
+        initAudio();
     }, { once: true });
 </script>
 </body>
