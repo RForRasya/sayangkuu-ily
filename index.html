@@ -597,6 +597,42 @@
         transform: scale(1.1);
     }
 
+    /* Scroll Notification */
+    .scroll-notification {
+        position: fixed;
+        bottom: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(45deg, #ff6b9d, #ff8fab);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 25px;
+        font-weight: bold;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        z-index: 1600;
+        display: none;
+        animation: notificationPulse 2s infinite;
+        text-align: center;
+        max-width: 300px;
+    }
+
+    @keyframes notificationPulse {
+        0%, 100% { 
+            transform: translateX(-50%) scale(1);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+        50% { 
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+    }
+
+    .scroll-notification::before {
+        content: '💌';
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
         .login-title {
@@ -682,6 +718,13 @@
             font-size: 1rem;
             padding: 15px;
         }
+
+        .scroll-notification {
+            bottom: 90px;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            max-width: 250px;
+        }
     }
 
     @media (max-width: 480px) {
@@ -715,6 +758,13 @@
 
         .envelope-message {
             font-size: 0.9rem;
+        }
+
+        .scroll-notification {
+            bottom: 80px;
+            padding: 10px 15px;
+            font-size: 0.8rem;
+            max-width: 200px;
         }
     }
 
@@ -781,6 +831,11 @@
 <!-- Audio Notice -->
 <div class="audio-notice" id="audioNotice">
     🎵 Musik akan diputar otomatis
+</div>
+
+<!-- Scroll Notification -->
+<div class="scroll-notification" id="scrollNotification">
+    Ada pesan khusus untukmu! Klik amplop di bawah 💕
 </div>
 
 <!-- Envelope Button -->
@@ -908,11 +963,17 @@
     </div>
 </div>
 
+<!-- Audio Element -->
+<audio id="envelopeSound" preload="auto">
+    <source src="/sounds/envelope-sound.mp3" type="audio/mpeg">
+</audio>
+
 <script>
     let isPlaying = false;
     let currentPhotoIndex = 0;
     let audioContext;
     let currentMelodyTimeout;
+    let hasScrolledToBottom = false;
 
     // Photo URLs - Foto-foto Citra yang cantik
     const photoUrls = {
@@ -975,16 +1036,54 @@
         }
     }
 
-    // Show envelope button after some time
-    function showEnvelopeButton() {
+    // Scroll detection for notification
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Check if user scrolled to bottom (with some tolerance)
+        if (scrollTop + windowHeight >= documentHeight - 100 && !hasScrolledToBottom) {
+            hasScrolledToBottom = true;
+            showScrollNotification();
+            showEnvelopeButton();
+        }
+    }
+
+    // Show scroll notification
+    function showScrollNotification() {
+        const notification = document.getElementById('scrollNotification');
+        notification.style.display = 'block';
+        
+        // Hide notification after 5 seconds
         setTimeout(() => {
-            document.getElementById('envelopeButton').style.display = 'block';
-        }, 10000); // Show after 10 seconds
+            notification.style.display = 'none';
+        }, 5000);
+    }
+
+    // Show envelope button
+    function showEnvelopeButton() {
+        document.getElementById('envelopeButton').style.display = 'block';
+    }
+
+    // Play envelope sound
+    function playEnvelopeSound() {
+        try {
+            const audio = document.getElementById('envelopeSound');
+            audio.currentTime = 0; // Reset to beginning
+            audio.play().catch(error => {
+                console.log('Could not play sound:', error);
+            });
+        } catch (error) {
+            console.log('Sound error:', error);
+        }
     }
 
     // Envelope functions
     function openEnvelope() {
+        playEnvelopeSound();
         document.getElementById('envelopeModal').style.display = 'block';
+        document.getElementById('scrollNotification').style.display = 'none';
         document.body.style.overflow = 'hidden';
     }
 
@@ -1141,7 +1240,9 @@
         
         startHeartAnimation();
         animatePhotos();
-        showEnvelopeButton();
+        
+        // Add scroll listener
+        window.addEventListener('scroll', handleScroll);
     }
 
     // Modal functions
@@ -1218,10 +1319,15 @@
         document.getElementById('loginPage').style.display = 'flex';
         document.getElementById('musicControl').style.display = 'none';
         document.getElementById('envelopeButton').style.display = 'none';
+        document.getElementById('scrollNotification').style.display = 'none';
         stopMusic();
         stopHeartAnimation();
         closeModal();
         closeEnvelope();
+        
+        // Remove scroll listener and reset flag
+        window.removeEventListener('scroll', handleScroll);
+        hasScrolledToBottom = false;
     }
 
     // Close modal when clicking outside
