@@ -449,6 +449,154 @@
         }
     }
 
+    /* Envelope Message Styles */
+    .envelope-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(45deg, #ff6b9d, #ff8fab);
+        border: none;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1500;
+        display: none;
+        animation: envelopeBounce 2s infinite;
+    }
+
+    .envelope-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+    }
+
+    @keyframes envelopeBounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
+    }
+
+    .envelope-modal {
+        display: none;
+        position: fixed;
+        z-index: 3000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+    }
+
+    .envelope-content {
+        position: relative;
+        margin: auto;
+        padding: 20px;
+        width: 90%;
+        max-width: 600px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .envelope-card {
+        background: linear-gradient(135deg, #fff, #f8f9fa);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        position: relative;
+        max-width: 500px;
+        width: 100%;
+        animation: envelopeOpen 0.8s ease;
+        border: 3px solid #ff6b9d;
+    }
+
+    @keyframes envelopeOpen {
+        0% {
+            transform: scale(0.3) rotateY(-90deg);
+            opacity: 0;
+        }
+        50% {
+            transform: scale(0.8) rotateY(-45deg);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(1) rotateY(0deg);
+            opacity: 1;
+        }
+    }
+
+    .envelope-card::before {
+        content: '💌';
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 3rem;
+        background: white;
+        padding: 10px;
+        border-radius: 50%;
+        box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+    }
+
+    .envelope-title {
+        color: #ff6b9d;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .envelope-message {
+        color: #333;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        text-align: left;
+        background: rgba(255, 107, 157, 0.05);
+        padding: 20px;
+        border-radius: 15px;
+        border-left: 4px solid #ff6b9d;
+    }
+
+    .envelope-signature {
+        color: #ff6b9d;
+        font-size: 1.3rem;
+        font-weight: bold;
+        font-style: italic;
+        margin-top: 20px;
+    }
+
+    .close-envelope {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        color: #ff6b9d;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(255, 107, 157, 0.1);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .close-envelope:hover {
+        background: rgba(255, 107, 157, 0.2);
+        transform: scale(1.1);
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
         .login-title {
@@ -512,6 +660,28 @@
         .modal-next {
             right: 10px;
         }
+
+        .envelope-button {
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+
+        .envelope-card {
+            padding: 30px 20px;
+            margin: 10px;
+        }
+
+        .envelope-title {
+            font-size: 1.5rem;
+        }
+
+        .envelope-message {
+            font-size: 1rem;
+            padding: 15px;
+        }
     }
 
     @media (max-width: 480px) {
@@ -533,6 +703,18 @@
 
         .modal-image {
             max-height: 50vh;
+        }
+
+        .envelope-card {
+            padding: 25px 15px;
+        }
+
+        .envelope-title {
+            font-size: 1.3rem;
+        }
+
+        .envelope-message {
+            font-size: 0.9rem;
         }
     }
 
@@ -599,6 +781,39 @@
 <!-- Audio Notice -->
 <div class="audio-notice" id="audioNotice">
     🎵 Musik akan diputar otomatis
+</div>
+
+<!-- Envelope Button -->
+<button class="envelope-button" id="envelopeButton" onclick="openEnvelope()">
+    💌
+</button>
+
+<!-- Envelope Modal -->
+<div class="envelope-modal" id="envelopeModal">
+    <div class="envelope-content">
+        <div class="envelope-card">
+            <span class="close-envelope" onclick="closeEnvelope()">&times;</span>
+            
+            <div class="envelope-title">💕 Pesan Khusus Untuk Kamu 💕</div>
+            
+            <div class="envelope-message">
+                HAPPYY GIRLFRIEND YAAAAAA SAYANGGGGG, AKUUU JANJIIIII AKUU BAKALLL UPGRADEE DIRI AKUUUUU DEMIII KAMUUUUUUUUUUUUU, OKEIII??????? 
+                <br><br>
+                AKUUU MAUUU BUAT KAMUU BAHAGIAAAA, MAUU PENUHINNN WHISTLISTT KAMUUUUUU, SEMUANYAAAAAAAAAA, BIARRR KAMUUU BAHAGIAAAAAAAAA YAAAA SAYANGKUUUUUUUUUUUUU 💕💕💕
+                <br><br>
+                MAAFFFFFFFF UDAHHHHH POSESIFFFFFFF YAHHHHHH KARNA AKUU KHAWATIRRRR:((((, MAAFFF UDAH BUAT KAMUU GA NYAMANNNNNNNNNNNNN 😭
+                <br><br>
+                OIYAAAAAAAA BUATT HAMPERSNYAAA MAAFFF YAHHH CUMA BISA NGASIH SEGITU DOANGG:(((, GANTINYAAAA KITAAA PENUHIN WHISTLIST BARENG BARENG YAKKKKKKKKKK 🎁✨
+                <br><br>
+                <strong>LOVEYOUUUUU SAYANGKUUUUUUUUUUUUUUUU 💖💖💖</strong>
+            </div>
+            
+            <div class="envelope-signature">
+                Dengan cinta yang tak terbatas,<br>
+                Pacar tersayang 💕
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Photo Modal -->
@@ -760,6 +975,32 @@
         }
     }
 
+    // Show envelope button after some time
+    function showEnvelopeButton() {
+        setTimeout(() => {
+            document.getElementById('envelopeButton').style.display = 'block';
+        }, 10000); // Show after 10 seconds
+    }
+
+    // Envelope functions
+    function openEnvelope() {
+        document.getElementById('envelopeModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeEnvelope() {
+        document.getElementById('envelopeModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close envelope when clicking outside
+    window.addEventListener('click', function(event) {
+        const envelopeModal = document.getElementById('envelopeModal');
+        if (event.target === envelopeModal) {
+            closeEnvelope();
+        }
+    });
+
     // Pasilyo-inspired melody (chorus part)
     function createPasilyoMelody() {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -900,6 +1141,7 @@
         
         startHeartAnimation();
         animatePhotos();
+        showEnvelopeButton();
     }
 
     // Modal functions
@@ -975,9 +1217,11 @@
         document.getElementById('mainPage').style.display = 'none';
         document.getElementById('loginPage').style.display = 'flex';
         document.getElementById('musicControl').style.display = 'none';
+        document.getElementById('envelopeButton').style.display = 'none';
         stopMusic();
         stopHeartAnimation();
         closeModal();
+        closeEnvelope();
     }
 
     // Close modal when clicking outside
@@ -991,6 +1235,8 @@
     // Keyboard navigation
     document.addEventListener('keydown', function(event) {
         const modal = document.getElementById('photoModal');
+        const envelopeModal = document.getElementById('envelopeModal');
+        
         if (modal.style.display === 'block') {
             if (event.key === 'Escape') {
                 closeModal();
@@ -999,6 +1245,10 @@
             } else if (event.key === 'ArrowRight') {
                 nextPhoto();
             }
+        }
+        
+        if (envelopeModal.style.display === 'block' && event.key === 'Escape') {
+            closeEnvelope();
         }
     });
 
