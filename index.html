@@ -2,13 +2,14 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Happy Girlfriend Day - SAYANGKUUUUUUUUU</title>
 <style>
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -18,6 +19,8 @@
         animation: gradientShift 8s ease infinite;
         min-height: 100vh;
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     @keyframes gradientShift {
@@ -79,9 +82,11 @@
         cursor: pointer;
         transition: all 0.3s ease;
         width: 100%;
+        min-height: 50px;
+        touch-action: manipulation;
     }
 
-    .login-btn:hover {
+    .login-btn:hover, .login-btn:active {
         transform: translateY(-2px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
@@ -91,7 +96,7 @@
         display: none;
         padding: 20px;
         text-align: center;
-        padding-top: 80px; /* Space for fixed buttons */
+        padding-top: 80px;
     }
 
     .header {
@@ -127,12 +132,8 @@
     }
 
     @keyframes glow {
-        from {
-            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
-        }
-        to {
-            text-shadow: 0 0 30px rgba(69, 183, 209, 0.8);
-        }
+        from { text-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
+        to { text-shadow: 0 0 30px rgba(69, 183, 209, 0.8); }
     }
 
     @keyframes bounce {
@@ -142,14 +143,8 @@
     }
 
     @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-50px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     /* Music Control */
@@ -167,10 +162,15 @@
         z-index: 1000;
         display: none;
         min-width: 50px;
+        min-height: 50px;
         text-align: center;
+        touch-action: manipulation;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .music-control:hover {
+    .music-control:hover, .music-control:active {
         background: #ff6b9d;
         color: white;
         transform: scale(1.1);
@@ -194,7 +194,7 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
-        margin-bottom: 120px; /* Space for envelope button */
+        margin-bottom: 120px;
     }
 
     .photo-card {
@@ -208,6 +208,7 @@
         border: 3px solid transparent;
         background-clip: padding-box;
         cursor: pointer;
+        touch-action: manipulation;
     }
 
     .photo-card.animate {
@@ -215,13 +216,8 @@
         opacity: 1;
     }
 
-    .photo-card:nth-child(odd) {
-        border-color: #ff6b9d;
-    }
-
-    .photo-card:nth-child(even) {
-        border-color: #45b7d1;
-    }
+    .photo-card:nth-child(odd) { border-color: #ff6b9d; }
+    .photo-card:nth-child(even) { border-color: #45b7d1; }
 
     .photo-placeholder {
         width: 100%;
@@ -265,9 +261,7 @@
         z-index: 1;
     }
 
-    .photo-placeholder.has-image::before {
-        display: none;
-    }
+    .photo-placeholder.has-image::before { display: none; }
 
     .photo-placeholder::after {
         content: 'Klik untuk melihat';
@@ -284,9 +278,7 @@
         z-index: 2;
     }
 
-    .photo-card:hover .photo-placeholder::after {
-        opacity: 1;
-    }
+    .photo-card:hover .photo-placeholder::after { opacity: 1; }
 
     @keyframes shimmer {
         0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
@@ -299,6 +291,7 @@
         font-weight: bold;
         margin-bottom: 10px;
         word-wrap: break-word;
+        line-height: 1.3;
     }
 
     .photo-description {
@@ -343,14 +336,8 @@
     }
 
     @keyframes modalZoomIn {
-        from {
-            transform: scale(0.3);
-            opacity: 0;
-        }
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
+        from { transform: scale(0.3); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
     }
 
     .modal-info {
@@ -370,6 +357,7 @@
         font-weight: bold;
         margin-bottom: 10px;
         word-wrap: break-word;
+        line-height: 1.3;
     }
 
     .modal-description {
@@ -395,9 +383,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        touch-action: manipulation;
     }
 
-    .close-modal:hover {
+    .close-modal:hover, .close-modal:active {
         background: rgba(255, 107, 157, 1);
         transform: scale(1.1);
     }
@@ -414,20 +403,21 @@
         cursor: pointer;
         border-radius: 50%;
         transition: all 0.3s ease;
+        touch-action: manipulation;
+        min-width: 60px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .modal-nav:hover {
+    .modal-nav:hover, .modal-nav:active {
         background: rgba(255, 107, 157, 1);
         transform: translateY(-50%) scale(1.1);
     }
 
-    .modal-prev {
-        left: 20px;
-    }
-
-    .modal-next {
-        right: 20px;
-    }
+    .modal-prev { left: 20px; }
+    .modal-next { right: 20px; }
 
     /* Hearts Animation */
     .hearts {
@@ -448,14 +438,8 @@
     }
 
     @keyframes float {
-        0% {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-        }
+        0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
     }
 
     /* Envelope Message Styles */
@@ -476,9 +460,10 @@
         z-index: 1500;
         display: none;
         animation: envelopeBounce 2s infinite;
+        touch-action: manipulation;
     }
 
-    .envelope-button:hover {
+    .envelope-button:hover, .envelope-button:active {
         transform: scale(1.1);
         box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
     }
@@ -530,18 +515,9 @@
     }
 
     @keyframes envelopeOpen {
-        0% {
-            transform: scale(0.3) rotateY(-90deg);
-            opacity: 0;
-        }
-        50% {
-            transform: scale(0.8) rotateY(-45deg);
-            opacity: 0.5;
-        }
-        100% {
-            transform: scale(1) rotateY(0deg);
-            opacity: 1;
-        }
+        0% { transform: scale(0.3) rotateY(-90deg); opacity: 0; }
+        50% { transform: scale(0.8) rotateY(-45deg); opacity: 0.5; }
+        100% { transform: scale(1) rotateY(0deg); opacity: 1; }
     }
 
     .envelope-card::before {
@@ -564,6 +540,7 @@
         margin-bottom: 20px;
         margin-top: 20px;
         word-wrap: break-word;
+        line-height: 1.3;
     }
 
     .envelope-message {
@@ -586,6 +563,7 @@
         font-style: italic;
         margin-top: 20px;
         word-wrap: break-word;
+        line-height: 1.3;
     }
 
     .close-envelope {
@@ -604,9 +582,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        touch-action: manipulation;
     }
 
-    .close-envelope:hover {
+    .close-envelope:hover, .close-envelope:active {
         background: rgba(255, 107, 157, 0.2);
         transform: scale(1.1);
     }
@@ -629,6 +608,7 @@
         text-align: center;
         max-width: 300px;
         word-wrap: break-word;
+        line-height: 1.3;
     }
 
     @keyframes notificationPulse {
@@ -663,9 +643,14 @@
         transition: all 0.3s ease;
         z-index: 100;
         font-size: 0.9rem;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        touch-action: manipulation;
     }
 
-    .back-btn:hover {
+    .back-btn:hover, .back-btn:active {
         background: #ff6b9d;
         color: white;
         transform: translateY(-2px);
@@ -689,61 +674,238 @@
         text-align: center;
         max-width: 90%;
         word-wrap: break-word;
+        line-height: 1.3;
     }
 
     @keyframes slideUp {
-        from {
-            transform: translateX(-50%) translateY(100px);
-            opacity: 0;
+        from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+        to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+
+    /* MOBILE RESPONSIVE DESIGN - IMPROVED */
+    @media (max-width: 768px) {
+        .main-container {
+            padding: 15px;
+            padding-top: 80px;
         }
-        to {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
+
+        .login-title {
+            font-size: 2.2rem;
+        }
+
+        .login-subtitle {
+            font-size: 1.2rem;
+        }
+
+        .login-message {
+            font-size: 0.95rem;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .girlfriend-name {
+            font-size: 1.6rem;
+            margin: 20px 0;
+            line-height: 1.2;
+        }
+
+        .photo-gallery {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 15px;
+            margin-bottom: 120px;
+        }
+
+        .photo-card {
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .photo-placeholder {
+            height: 220px;
+            border-radius: 12px;
+        }
+
+        .photo-caption {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .photo-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .login-box {
+            padding: 35px 25px;
+            margin: 15px;
+            border-radius: 15px;
+        }
+
+        .music-control {
+            top: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            font-size: 1.3rem;
+            padding: 0;
+        }
+
+        .back-btn {
+            top: 20px;
+            left: 20px;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            min-height: 50px;
+        }
+
+        .modal-content {
+            padding: 20px;
+        }
+
+        .modal-image {
+            max-height: 60vh;
+        }
+
+        .modal-info {
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            line-height: 1.3;
+        }
+
+        .modal-description {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .close-modal {
+            top: 20px;
+            right: 25px;
+            font-size: 32px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .modal-nav {
+            padding: 0;
+            font-size: 22px;
+            width: 55px;
+            height: 55px;
+        }
+
+        .modal-prev { left: 20px; }
+        .modal-next { right: 20px; }
+
+        .envelope-button {
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            font-size: 1.8rem;
+        }
+
+        .envelope-content {
+            padding: 20px;
+        }
+
+        .envelope-card {
+            padding: 30px 25px;
+            margin: 15px;
+            border-radius: 15px;
+        }
+
+        .envelope-title {
+            font-size: 1.6rem;
+            line-height: 1.3;
+        }
+
+        .envelope-message {
+            font-size: 1rem;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .envelope-signature {
+            font-size: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .scroll-notification {
+            bottom: 110px;
+            padding: 15px 25px;
+            font-size: 0.9rem;
+            max-width: 320px;
+            line-height: 1.3;
+        }
+
+        .audio-notice {
+            padding: 15px 25px;
+            font-size: 0.95rem;
+            line-height: 1.3;
         }
     }
 
-    /* Mobile Responsive Design */
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
         .main-container {
-            padding: 10px;
-            padding-top: 70px;
+            padding: 12px;
+            padding-top: 75px;
         }
 
         .login-title {
             font-size: 2rem;
         }
 
+        .login-subtitle {
+            font-size: 1.1rem;
+        }
+
         .main-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 15px;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .girlfriend-name {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin: 15px 0;
         }
 
         .photo-gallery {
-            grid-template-columns: 1fr;
             gap: 15px;
-            padding: 15px;
-            margin-bottom: 100px;
+            padding: 12px;
+            margin-bottom: 110px;
         }
 
         .photo-card {
             padding: 15px;
+            border-radius: 12px;
         }
 
         .photo-placeholder {
-            height: 180px;
+            height: 200px;
         }
 
         .photo-caption {
             font-size: 1rem;
+            margin-bottom: 10px;
         }
 
         .photo-description {
@@ -752,21 +914,23 @@
 
         .login-box {
             padding: 30px 20px;
-            margin: 10px;
+            margin: 12px;
         }
 
         .music-control {
             top: 15px;
             right: 15px;
-            padding: 8px 12px;
-            font-size: 1rem;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
         }
 
         .back-btn {
             top: 15px;
             left: 15px;
-            padding: 8px 15px;
-            font-size: 0.8rem;
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            min-height: 45px;
         }
 
         .modal-content {
@@ -774,7 +938,7 @@
         }
 
         .modal-image {
-            max-height: 55vh;
+            max-height: 50vh;
         }
 
         .modal-info {
@@ -783,7 +947,7 @@
         }
 
         .modal-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .modal-description {
@@ -799,33 +963,25 @@
         }
 
         .modal-nav {
-            padding: 12px 16px;
             font-size: 20px;
+            width: 50px;
+            height: 50px;
         }
 
-        .modal-prev {
-            left: 15px;
-        }
-
-        .modal-next {
-            right: 15px;
-        }
+        .modal-prev { left: 15px; }
+        .modal-next { right: 15px; }
 
         .envelope-button {
             bottom: 25px;
             right: 25px;
             width: 60px;
             height: 60px;
-            font-size: 1.5rem;
-        }
-
-        .envelope-content {
-            padding: 15px;
+            font-size: 1.6rem;
         }
 
         .envelope-card {
             padding: 25px 20px;
-            margin: 10px;
+            margin: 12px;
         }
 
         .envelope-title {
@@ -854,18 +1010,14 @@
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 360px) {
         .main-container {
-            padding: 8px;
-            padding-top: 65px;
+            padding: 10px;
+            padding-top: 70px;
         }
 
         .main-title {
             font-size: 1.8rem;
-        }
-
-        .subtitle {
-            font-size: 1rem;
         }
 
         .girlfriend-name {
@@ -875,7 +1027,7 @@
         .photo-gallery {
             gap: 12px;
             padding: 10px;
-            margin-bottom: 90px;
+            margin-bottom: 100px;
         }
 
         .photo-card {
@@ -883,7 +1035,7 @@
         }
 
         .photo-placeholder {
-            height: 160px;
+            height: 180px;
         }
 
         .photo-caption {
@@ -892,6 +1044,27 @@
 
         .photo-description {
             font-size: 0.8rem;
+        }
+
+        .login-box {
+            padding: 25px 15px;
+            margin: 10px;
+        }
+
+        .music-control {
+            top: 12px;
+            right: 12px;
+            width: 45px;
+            height: 45px;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            top: 12px;
+            left: 12px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            min-height: 40px;
         }
 
         .modal-image {
@@ -911,7 +1084,7 @@
         }
 
         .close-modal {
-            top: 10px;
+            top: 12px;
             right: 15px;
             font-size: 24px;
             width: 40px;
@@ -919,28 +1092,25 @@
         }
 
         .modal-nav {
-            padding: 10px 14px;
             font-size: 18px;
+            width: 45px;
+            height: 45px;
         }
 
-        .modal-prev {
-            left: 10px;
-        }
-
-        .modal-next {
-            right: 10px;
-        }
+        .modal-prev { left: 12px; }
+        .modal-next { right: 12px; }
 
         .envelope-button {
             bottom: 20px;
             right: 20px;
             width: 55px;
             height: 55px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
         .envelope-card {
             padding: 20px 15px;
+            margin: 10px;
         }
 
         .envelope-title {
@@ -963,27 +1133,14 @@
             max-width: 250px;
         }
 
-        .music-control {
-            top: 12px;
-            right: 12px;
-            padding: 6px 10px;
-            font-size: 0.9rem;
-        }
-
-        .back-btn {
-            top: 12px;
-            left: 12px;
-            padding: 6px 12px;
-            font-size: 0.75rem;
-        }
-
         .audio-notice {
             padding: 10px 15px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
     }
 
-    @media (max-width: 360px) {
+    /* Extra small screens */
+    @media (max-width: 320px) {
         .main-title {
             font-size: 1.6rem;
         }
@@ -993,7 +1150,7 @@
         }
 
         .photo-placeholder {
-            height: 140px;
+            height: 160px;
         }
 
         .envelope-card {
@@ -1006,6 +1163,26 @@
 
         .envelope-message {
             font-size: 0.85rem;
+        }
+    }
+
+    /* Touch improvements */
+    @media (hover: none) and (pointer: coarse) {
+        .photo-card:active {
+            transform: scale(0.98);
+        }
+
+        .login-btn:active,
+        .music-control:active,
+        .back-btn:active,
+        .envelope-button:active {
+            transform: scale(0.95);
+        }
+
+        .modal-nav:active,
+        .close-modal:active,
+        .close-envelope:active {
+            transform: scale(0.9);
         }
     }
 </style>
@@ -1055,8 +1232,8 @@
             </div>
             
             <div class="envelope-signature">
-                Happy Girlfriend sayang,<br>
-                Rasyaa
+                Dengan cinta yang tak terbatas,<br>
+                Pacar tersayang 💕
             </div>
         </div>
     </div>
@@ -1086,8 +1263,8 @@
         <h1 class="login-title">💕</h1>
         <h2 class="login-subtitle">Citra Purbayasari</h2>
         <p class="login-message">
-            HAYAWWWWWWWWWWWWWW!<br>
-            Masukk yaaa sayangggkuuuuu
+            Selamat datang di hari spesial ini!<br>
+            Ada surprise khusus yang sudah disiapkan untukmu
         </p>
         <button class="login-btn" onclick="enterSite()">Masuk 💖</button>
     </div>
@@ -1167,23 +1344,23 @@
                 <span>✌️ Peace Sign</span>
             </div>
             <div class="photo-caption">POSE PEACE YANG MENGGEMASKANNNNN</div>
-            <div class="photo-description">ADUHHHHH POSE PEACE NYAAA LUCUUU BANGETTTTT! KACAMATA HITAMNYAAA BIKIN KELIATAN LUCUUUUUUU</div>
+            <div class="photo-description">ADUHHHHH POSE PEACE NYAAA LUCUUU BANGETTTTT! KACAMATA HITAMNYAAA BIKIN KELIATAN KAYAK ARTISSSS GITUUUU 😎✨</div>
         </div>
 
         <div class="photo-card" onclick="openModal(8)">
             <div class="photo-placeholder" id="placeholder8">
                 <span>👫 Couple Goals</span>
             </div>
-            <div class="photo-caption">FOTO STUDIO TERSWEETTTTT</div>
-            <div class="photo-description">INIII FOTO COUPLE GOALS BANGETTTTT! KITAA BERDUA KOMPAKKKK BANGET PAKE BAJU ITEMMMM, ROMANTISSSS POLLLL 💕👫</div>
+            <div class="photo-caption">FOTO COUPLE TERSWEETTTTT</div>
+            <div class="photo-description">INIII FOTO COUPLE GOALS BANGETTTTT! KALIAN BERDUA KOMPAKKKK BANGET PAKE BAJU ITEMMMM, ROMANTISSSS POLLLL 💕👫</div>
         </div>
 
         <div class="photo-card" onclick="openModal(9)">
             <div class="photo-placeholder" id="placeholder9">
                 <span>🍜 Makan Bareng</span>
             </div>
-            <div class="photo-caption">LAGI MAKAN GACOANNNN</div>
-            <div class="photo-description">WAHHHHH LAGI MAKAN GACOANNNN! MAKANANNYAAA KELIATAN ENAKKK BANGET, PASTI KENYANGGGG DEHHH 🍜✨</div>
+            <div class="photo-caption">LAGI MAKAN ENAK BANGETTTTT</div>
+            <div class="photo-description">WAHHHHH LAGI MAKAN DI TEMPAT YANG BAGUSSSSS! MAKANANNYAAA KELIATAN ENAKKK BANGET, PASTI KENYANGGGG DEHHH 🍜✨</div>
         </div>
 
         <div class="photo-card" onclick="openModal(10)">
@@ -1222,19 +1399,18 @@
 
     // Photo URLs - Updated with new photos
     const photoUrls = {
-        0: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiii.jpg-fkkmExVOH0LEb8I3TgPZ4ri5vTqWzs.jpeg", // Citra streaming
-        1: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiii.jpg-G2qYMpfZ4zFLQPwe2Fudz8SgGcwytr.jpeg", // Citra selfie dramatis
-        2: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiii.jpg-S9Nr1LU7XZXvCIOPzAEtcejSH0yFHk.jpeg", // Citra santai
-        3: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hi.jpg-K4c9jCakm2F8qqorafNMpJSeDJDEvg.jpeg", // Foto berdua
-        4: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiii.jpg-Ft7cCc7yQbwtfwX8W19xz4hxZ5HrrJ.jpeg", // Citra berkacamata
-        5: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hii.jpg-1Thd7NS3r59Jb4d3aZRAI1gSEXWXBN.jpeg", // Citra cute pink
-        // NEW PHOTOS
-        6: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiii.jpg-dCPqfo4YJmfjQDoZAuDfEpMJDNf0Li.jpeg", // Selfie blur dengan kacamata
-        7: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiii.jpg-x1WQpiCxkS1VIPBCjmF5EBKeLZIpae.jpeg", // Peace sign dengan kacamata hitam
-        8: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiii.jpg-88OocGwuYfZbuzA7VRjlxB5gUgyW1P.jpeg", // Foto couple di kursi
-        9: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiii.jpg-AfXevPItI4vVohJFzEDZbFbgsOsJI5.jpeg", // Makan di restoran
-        10: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiiiii.jpg-2UKmmcawJs9ZBVLnrywBcXU1lsj851.jpeg", // Hijab pink dengan bunga
-        11: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiiii.jpg-LmtWxSybau17kCRGFrdPX87EqREdU8.jpeg"  // Outfit maroon peace sign
+        0: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiii.jpg-fkkmExVOH0LEb8I3TgPZ4ri5vTqWzs.jpeg",
+        1: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiii.jpg-G2qYMpfZ4zFLQPwe2Fudz8SgGcwytr.jpeg",
+        2: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiii.jpg-S9Nr1LU7XZXvCIOPzAEtcejSH0yFHk.jpeg",
+        3: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hi.jpg-K4c9jCakm2F8qqorafNMpJSeDJDEvg.jpeg",
+        4: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiii.jpg-Ft7cCc7yQbwtfwX8W19xz4hxZ5HrrJ.jpeg",
+        5: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hii.jpg-1Thd7NS3r59Jb4d3aZRAI1gSEXWXBN.jpeg",
+        6: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiii.jpg-dCPqfo4YJmfjQDoZAuDfEpMJDNf0Li.jpeg",
+        7: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiii.jpg-x1WQpiCxkS1VIPBCjmF5EBKeLZIpae.jpeg",
+        8: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiii.jpg-88OocGwuYfZbuzA7VRjlxB5gUgyW1P.jpeg",
+        9: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiii.jpg-AfXevPItI4vVohJFzEDZbFbgsOsJI5.jpeg",
+        10: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiiiii.jpg-2UKmmcawJs9ZBVLnrywBcXU1lsj851.jpeg",
+        11: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hiiiiiiiiiii.jpg-LmtWxSybau17kCRGFrdPX87EqREdU8.jpeg"
     };
 
     // Photo data - Updated with new photos
@@ -1275,7 +1451,6 @@
             content: "🌟 Mimpi Bersama",
             gradient: "linear-gradient(45deg, #45b7d1, #ffd700)"
         },
-        // NEW PHOTOS DATA
         {
             title: "SELFIE BLUR TAPI TETEP CAKEPPPPP",
             description: "WALAUPUN BLURRR TETEPPP KELIATAN CANTIKNYAAAA SAYANGGGGG! KACAMATANYAAA BIKIN TAMBAH GEMESINNNNN 🤓💕 LUCUUU BANGETTT DEHHHH",
@@ -1319,16 +1494,11 @@
         backgroundMusic = document.getElementById('backgroundMusic');
         envelopeSound = document.getElementById('envelopeSound');
         
-        // Set volume
-        if (backgroundMusic) {
-            backgroundMusic.volume = 0.4;
-        }
-        if (envelopeSound) {
-            envelopeSound.volume = 0.6;
-        }
+        if (backgroundMusic) backgroundMusic.volume = 0.4;
+        if (envelopeSound) envelopeSound.volume = 0.6;
     }
 
-    // Load photos on page load - Updated for 12 photos
+    // Load photos on page load
     function loadPhotos() {
         for (let i = 0; i < 12; i++) {
             const placeholder = document.getElementById(`placeholder${i}`);
@@ -1345,7 +1515,6 @@
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // Check if user scrolled to bottom (with some tolerance)
         if (scrollTop + windowHeight >= documentHeight - 150 && !hasScrolledToBottom) {
             hasScrolledToBottom = true;
             showScrollNotification();
@@ -1353,32 +1522,25 @@
         }
     }
 
-    // Show scroll notification
     function showScrollNotification() {
         const notification = document.getElementById('scrollNotification');
         if (notification) {
             notification.style.display = 'block';
-            
-            // Hide notification after 5 seconds
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 5000);
         }
     }
 
-    // Show envelope button
     function showEnvelopeButton() {
         const envelopeBtn = document.getElementById('envelopeButton');
-        if (envelopeBtn) {
-            envelopeBtn.style.display = 'block';
-        }
+        if (envelopeBtn) envelopeBtn.style.display = 'block';
     }
 
-    // Play envelope sound
     function playEnvelopeSound() {
         try {
             if (envelopeSound) {
-                envelopeSound.currentTime = 0; // Reset to beginning
+                envelopeSound.currentTime = 0;
                 const playPromise = envelopeSound.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(error => {
@@ -1391,7 +1553,6 @@
         }
     }
 
-    // Music control functions
     function toggleMusic() {
         if (!backgroundMusic) {
             initAudio();
@@ -1446,37 +1607,28 @@
         if (notice) {
             notice.textContent = message;
             notice.style.display = 'block';
-            
             setTimeout(() => {
                 notice.style.display = 'none';
             }, 3000);
         }
     }
 
-    // Envelope functions
     function openEnvelope() {
         playEnvelopeSound();
         const envelopeModal = document.getElementById('envelopeModal');
         const scrollNotification = document.getElementById('scrollNotification');
         
-        if (envelopeModal) {
-            envelopeModal.style.display = 'block';
-        }
-        if (scrollNotification) {
-            scrollNotification.style.display = 'none';
-        }
+        if (envelopeModal) envelopeModal.style.display = 'block';
+        if (scrollNotification) scrollNotification.style.display = 'none';
         document.body.style.overflow = 'hidden';
     }
 
     function closeEnvelope() {
         const envelopeModal = document.getElementById('envelopeModal');
-        if (envelopeModal) {
-            envelopeModal.style.display = 'none';
-        }
+        if (envelopeModal) envelopeModal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
 
-    // Close envelope when clicking outside
     window.addEventListener('click', function(event) {
         const envelopeModal = document.getElementById('envelopeModal');
         if (event.target === envelopeModal) {
@@ -1484,7 +1636,6 @@
         }
     });
 
-    // Enter site function
     function enterSite() {
         const loginPage = document.getElementById('loginPage');
         const mainPage = document.getElementById('mainPage');
@@ -1492,27 +1643,20 @@
         
         if (loginPage) loginPage.style.display = 'none';
         if (mainPage) mainPage.style.display = 'block';
-        if (musicControl) musicControl.style.display = 'block';
+        if (musicControl) musicControl.style.display = 'flex';
         
-        // Load photos
         loadPhotos();
-        
-        // Initialize audio
         initAudio();
         
-        // Start music after a short delay
         setTimeout(() => {
             startMusic();
         }, 1500);
         
         startHeartAnimation();
         animatePhotos();
-        
-        // Add scroll listener
         window.addEventListener('scroll', handleScroll);
     }
 
-    // Modal functions
     function openModal(photoIndex) {
         currentPhotoIndex = photoIndex;
         const modal = document.getElementById('photoModal');
@@ -1524,7 +1668,6 @@
         
         const photo = photos[photoIndex];
         
-        // Check if there's a photo URL
         if (photoUrls[photoIndex] && photoUrls[photoIndex].trim() !== "") {
             modalImage.innerHTML = `<img src="${photoUrls[photoIndex]}" style="max-width: 100%; max-height: 70vh; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);">`;
         } else {
@@ -1569,9 +1712,7 @@
 
     function closeModal() {
         const modal = document.getElementById('photoModal');
-        if (modal) {
-            modal.style.display = 'none';
-        }
+        if (modal) modal.style.display = 'none';
         document.body.style.overflow = 'auto';
     }
 
@@ -1603,12 +1744,10 @@
         closeModal();
         closeEnvelope();
         
-        // Remove scroll listener and reset flag
         window.removeEventListener('scroll', handleScroll);
         hasScrolledToBottom = false;
     }
 
-    // Close modal when clicking outside
     window.onclick = function(event) {
         const modal = document.getElementById('photoModal');
         if (event.target === modal) {
@@ -1616,7 +1755,6 @@
         }
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', function(event) {
         const modal = document.getElementById('photoModal');
         const envelopeModal = document.getElementById('envelopeModal');
@@ -1647,9 +1785,7 @@
             clearInterval(heartInterval);
         }
         const hearts = document.getElementById('hearts');
-        if (hearts) {
-            hearts.innerHTML = '';
-        }
+        if (hearts) hearts.innerHTML = '';
     }
 
     function createHeart() {
